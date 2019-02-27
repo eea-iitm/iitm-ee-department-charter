@@ -1,0 +1,3 @@
+This repo contains the source files for the Department Charter of the Department of Electrical Engineering, IIT Madras.
+
+The pdf can be built with CLI tools like pdflatex or GUI tools like Texmaker and TeXstudio
