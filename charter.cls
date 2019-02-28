@@ -17,25 +17,19 @@
 \newcounter{article}
 \renewcommand\thearticle{\Roman{article}}
 
-\titlecontents{article}
-[1.5em]
-{\bfseries}
-{\contentslabel{2.3em}}
-{\hspace*{-2.3em}}
-{\titlerule*[1pc]{.}\contentspage}
+\titlecontents{article}[1.5em]{\bfseries}{\contentslabel{2.3em}}{\hspace*{-2.3em}}{\titlerule*[1pc]{.}\contentspage}
 
 \titlespacing*{\section}{0mm}{0.5em}{-3em}
 \makeatletter
 \@addtoreset{section}{article}
 \makeatother
-\titleformat{\section}[hang]{\normalfont\Large\scshape}
-{}{0em}{}[\hfill\vspace{1em}]
+\titleformat{\section}[hang]{\normalfont\Large\scshape}{\thearticle.\thesection}{.5em}{}[\hfill\vspace{1em}]
 
 \titlespacing*{\subsection}{0mm}{0.5em}{-2.5em}
 \makeatletter
-\@addtoreset{subsection}{section}
+\@addtoreset{subsection}{article}
 \makeatother
-\titleformat{\subsection}[hang]{\normalfont\scshape\large}{}{0em}{}[\hfill\vspace{1em}]
+\titleformat{\subsection}[hang]{\normalfont\scshape\large}{}{0em}{\thearticle.\thesection.\thesubsection\hspace{.5em}}[\hfill\vspace{1em}\stepcounter{subsection}]
 
 \titlespacing*{\subsubsection}{0mm}{0.5em}{-2em}
 \makeatletter
@@ -51,7 +45,11 @@
 \titleformat{\chapter}[hang]{\normalfont\Large\scshape}
 {}{0em}{}[\hfill\vspace{1em}]
 
-\renewcommand{\thesection}{\arabic{section}} 
+\renewcommand{\thearticle}{\arabic{article}}
+\renewcommand{\thesection}{\arabic{section}}
+\makeatletter
+\renewcommand{\thesubsection}{\@arabic{\numexpr\value{subsection}+1\relax}} %to stop numbering from starting at 0
+\makeatother
 \renewcommand{\theenumi}{\alph{enumi}}
 \renewcommand{\theenumii}{\roman{enumii}}
 
